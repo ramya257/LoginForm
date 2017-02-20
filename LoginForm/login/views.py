@@ -18,7 +18,7 @@ def login(request):
 		gender=str(request.POST.get('gender'))
 		email=str(request.POST.get('email'))
 		description=str(request.POST.get('description'))
-		city=str(request.POST.get('city'))
+		city=request.POST['city']
 		mobile=int(request.POST.get('mobile'))
 		l=login_data.objects.create(name=name,password=password,gender=gender,email=email,description=description,city=city,mobile=mobile)
 		return render(request,"index.html",{}) 
