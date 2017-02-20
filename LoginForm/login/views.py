@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from .models import login_data
+from .models import *
 import requests
 import random
 # Create your views here.
+@csrf_exempt
 def login(request):
 	response_json={}
 	if request.method=='GET':
@@ -19,7 +20,5 @@ def login(request):
 		description=str(request.POST.get('description'))
 		city=str(request.POST.get('city'))
 		mobile=int(request.POST.get('mobile'))
-		login=login_data.objects.create(name=name,password=password,gender=gender,email=email
-			,description=description,city=city,mobile=mobile)
-		login.save()
+		l=login_data.objects.create(name=name,password=password,gender=gender,email=email,description=description,city=city,mobile=mobile)
 		return render(request,"index.html",{}) 
